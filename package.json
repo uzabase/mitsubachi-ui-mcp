@@ -1,0 +1,22 @@
+{
+    "name": "mitsubachi-ui-mcp",
+    "version": "0.10.0",
+    "main": "./bin/mcp.js",
+    "type": "module",
+    "bin": {
+      "mitsubachi-ui-mcp": "./bin/mcp.js"
+    },
+    "scripts": {
+    },
+    "repository": {
+      "type": "git",
+      "url": "git@github.com:alpdr/mitsubachi-ui-mcp.git"
+    },
+    "license": "Apache-2.0 license",
+    "dependencies": {
+      "@modelcontextprotocol/sdk": "^1.9.0"
+    },
+    "devDependencies": {
+    }
+  }
+  
