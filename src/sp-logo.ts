@@ -1,7 +1,7 @@
 import { z, ZodRawShape } from "zod";
 import { CustomElement } from "./manifest";
 import { describe } from "./schema";
-import { html, nothing, TemplateResult, render } from "lit";
+import { html, nothing, TemplateResult } from "lit-html";
 
 export function getSpLogoDefinition(
   customElement: CustomElement,

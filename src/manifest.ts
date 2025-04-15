@@ -1,4 +1,4 @@
-import custom from "./custom-elements.json" with { type: "json" };
+import custom from 'mitsubachi-ui/custom-elements.json';
 
 export interface Manifest {
   get summaries(): { [key: string]: string };

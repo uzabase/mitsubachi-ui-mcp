@@ -3,8 +3,11 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { loadDefaultManifest, Manifest } from "./manifest";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { makeWebComponentContent } from "./tool";
-import {  getSpLogoDefinition } from "./sp-logo";
+import { getSpLogoDefinition } from "./sp-logo";
 import { render } from "@lit-labs/ssr";
+import {
+  collectResult,
+} from '@lit-labs/ssr/lib/render-result.js';
 
 function buildMcpServer(): McpServer {
   return new McpServer({
@@ -27,30 +30,30 @@ function defineTools(server: McpServer, manifest: Manifest) {
       return {
         content,
       };
-    },
+    }
   );
-  for(const {tag, body} of [{tag: 'sp-logo', body: getSpLogoDefinition}]) {
+  for (const { tag, body } of [{ tag: "sp-logo", body: getSpLogoDefinition }]) {
     const customElement = manifest.customElements[tag];
-    if(customElement) {
-
+    if (customElement) {
       const [input, builder] = body(customElement);
       server.tool(
-        `mitsubachi-${tag}`, 
+        `mitsubachi-${tag}`,
         customElement.summary ?? `<${tag}>を生成します。`,
-        input, async (shape) => {
-          const built = builder(shape);
-          const h= new HTMLBodyElement();
-          render(built, h);
+        input,
+        async (shape) => {
+          const rendered = await collectResult(render(builder(shape)));
           return {
-            content: [{
-              type: "text",
-              text: h.innerHTML,
-            }],
+            content: [
+              {
+                type: "text",
+                text: rendered,
+              },
+            ],
           };
-        });
+        }
+      );
     }
   }
-  
 }
 
 export async function main() {
