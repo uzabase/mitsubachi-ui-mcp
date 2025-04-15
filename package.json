@@ -1,22 +1,25 @@
 {
-    "name": "mitsubachi-ui-mcp",
-    "version": "0.10.0",
-    "main": "./bin/mcp.js",
-    "type": "module",
-    "bin": {
-      "mitsubachi-ui-mcp": "./bin/mcp.js"
-    },
-    "scripts": {
-    },
-    "repository": {
-      "type": "git",
-      "url": "git@github.com:alpdr/mitsubachi-ui-mcp.git"
-    },
-    "license": "Apache-2.0 license",
-    "dependencies": {
-      "@modelcontextprotocol/sdk": "^1.9.0"
-    },
-    "devDependencies": {
-    }
-  }
-  
+  "name": "mitsubachi-ui-mcp",
+  "version": "0.10.0",
+  "description": "A mcp server for mitsubachi-ui",
+  "main": "./bin/mcp.js",
+  "bin": {
+    "mitsubachi-ui-mcp": "./bin/mcp.js"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:alpdr/mitsubachi-ui-mcp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0 license",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.1",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "pnpm@10.8.0"
+}
