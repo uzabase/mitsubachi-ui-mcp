@@ -4,7 +4,7 @@ import { loadDefaultManifest, Manifest } from "./manifest";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { makeWebComponentContent } from "./tool";
 import {  getSpLogoDefinition } from "./sp-logo";
-import { render } from "lit";
+import { render } from "@lit-labs/ssr";
 
 function buildMcpServer(): McpServer {
   return new McpServer({
