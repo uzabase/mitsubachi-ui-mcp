@@ -2,6 +2,7 @@
   "name": "mitsubachi-ui-mcp",
   "version": "0.11.0",
   "description": "A mcp server for mitsubachi-ui",
+  "type": "module",
   "main": "./bin/mcp.js",
   "bin": {
     "mitsubachi-ui-mcp": "./bin/mcp.js"
