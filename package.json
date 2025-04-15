@@ -17,6 +17,7 @@
   "author": "",
   "license": "Apache-2.0 license",
   "dependencies": {
+    "@lit-labs/ssr": "^3.3.1",
     "@modelcontextprotocol/sdk": "^1.9.0",
     "lit-html": "^3.3.0",
     "mitsubachi-ui": "github:uzabase/mitsubachi-ui#semver:0.11.0-alpha.4"
