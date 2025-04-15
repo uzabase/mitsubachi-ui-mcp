@@ -17,9 +17,6 @@ importers:
       lit-html:
         specifier: ^3.3.0
         version: 3.3.0
-      mitsubachi-ui:
-        specifier: github:uzabase/mitsubachi-ui#semver:0.11.0-alpha.4
-        version: https://codeload.github.com/uzabase/mitsubachi-ui/tar.gz/898fd6530d722b6b8611966da40112812c94b319
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.1
@@ -27,6 +24,12 @@ importers:
       '@types/node':
         specifier: ^22.14.1
         version: 22.14.1
+      esbuild:
+        specifier: 0.25.2
+        version: 0.25.2
+      mitsubachi-ui:
+        specifier: github:uzabase/mitsubachi-ui#semver:0.11.0-alpha.4
+        version: https://codeload.github.com/uzabase/mitsubachi-ui/tar.gz/898fd6530d722b6b8611966da40112812c94b319
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
