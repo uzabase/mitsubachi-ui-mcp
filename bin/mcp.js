@@ -4,7 +4,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 // src/manifest.ts
-import custom from "mitsubachi-ui/custom-elements.json";
+import custom from "mitsubachi-ui/custom-elements.json" with { type: "json" };
 var CustomElementJson = class {
   raw;
   constructor(raw) {
