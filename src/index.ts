@@ -8,6 +8,7 @@ import { render } from "@lit-labs/ssr";
 import {
   collectResult,
 } from '@lit-labs/ssr/lib/render-result.js';
+import { ZodRawShape } from "zod";
 
 function buildMcpServer(): McpServer {
   return new McpServer({
@@ -40,7 +41,7 @@ function defineTools(server: McpServer, manifest: Manifest) {
         `mitsubachi-${tag}`,
         customElement.summary ?? `<${tag}>を生成します。`,
         input,
-        async (shape) => {
+        async (shape: ZodRawShape) => {
           const rendered = await collectResult(render(builder(shape)));
           return {
             content: [
