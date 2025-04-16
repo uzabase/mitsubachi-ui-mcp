@@ -1,1 +1,1 @@
-# mitsubachi-ui-mcp
+# mitsubachi-ui-utils
