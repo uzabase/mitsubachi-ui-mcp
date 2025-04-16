@@ -1,5 +1,5 @@
 import { ZodRawShape } from "zod";
-import { CustomElement } from "./manifest";
+import { CustomElement } from "./manifest.js";
 
 
 export function describe(schema: ZodRawShape, customElement: CustomElement){

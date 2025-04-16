@@ -1,5 +1,5 @@
-import { loadDefaultManifest } from "@mitsubachi-ui-mcp/manifest";
-import { makeWebComponentContent } from "@mitsubachi-ui-mcp/tool";
+import { loadDefaultManifest } from "@mitsubachi-ui-mcp/manifest.js";
+import { makeWebComponentContent } from "@mitsubachi-ui-mcp/tool.js";
 import {expect, describe, test } from  "vitest";
 
 describe("カスタム要素の概要を提供する", async () => {

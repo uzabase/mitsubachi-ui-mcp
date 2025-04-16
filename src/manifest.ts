@@ -9,6 +9,8 @@ export interface CustomElement {
   tagName: string;
   summary: string | undefined;
   describe(attribute: string): string | undefined;
+
+stringify(): string;
 }
 
 class CustomElementJson implements CustomElement {
@@ -24,6 +26,10 @@ class CustomElementJson implements CustomElement {
 
   get summary(): string | undefined {
     return this.raw.summary;
+  }
+
+  stringify(): string {
+    return JSON.stringify(this.raw);
   }
 
   describe(attribute: string): string | undefined {

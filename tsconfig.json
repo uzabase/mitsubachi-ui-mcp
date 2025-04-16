@@ -113,7 +113,7 @@
     // "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
     "paths": {
       "baseUrl": ["./"],
-      "@mitsubachi-ui-mcp/*": ["./src/*"]
+      "@/*": ["./src/*"]
     }
   }
 }

@@ -1,14 +1,9 @@
 #!/usr/bin/env node
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { loadDefaultManifest, Manifest } from "./manifest";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { makeWebComponentContent } from "./tool";
-import { getSpLogoDefinition } from "./sp-logo";
-import { render } from "@lit-labs/ssr";
-import {
-  collectResult,
-} from '@lit-labs/ssr/lib/render-result.js';
+import { collectResult } from "@lit-labs/ssr/lib/render-result.js";
 import { ZodRawShape } from "zod";
+import { loadDefaultManifest, Manifest } from "./manifest.js";
 
 function buildMcpServer(): McpServer {
   return new McpServer({
@@ -22,39 +17,56 @@ function buildMcpServer(): McpServer {
 }
 
 function defineTools(server: McpServer, manifest: Manifest) {
-  const content = makeWebComponentContent(manifest);
+  const customElements = manifest.customElements;
+  const texts: string[] = [];
+  for (const [tag, elm] of Object.entries(customElements)) {
+    texts.push(`<${tag}>のcustom element manifest: ${elm.stringify()}`);
+  }
+
   server.tool(
     "mitsubachi-ui-web-components",
-    "mitsubachi-uiのカスタム要素の一覧を提供します。",
+    "mitsubachi-uiのcustom-elements.jsonを提供します。",
     {},
     async () => {
       return {
-        content,
+        content: texts.map((text) => {
+          return { type: "text", text };
+        }),
       };
     }
   );
-  for (const { tag, body } of [{ tag: "sp-logo", body: getSpLogoDefinition }]) {
-    const customElement = manifest.customElements[tag];
-    if (customElement) {
-      const [input, builder] = body(customElement);
-      server.tool(
-        `mitsubachi-${tag}`,
-        customElement.summary ?? `<${tag}>を生成します。`,
-        input,
-        async (shape: ZodRawShape) => {
-          const rendered = await collectResult(render(builder(shape)));
-          return {
-            content: [
-              {
-                type: "text",
-                text: rendered,
-              },
-            ],
-          };
-        }
-      );
-    }
-  }
+  // server.tool(
+  //   "mitsubachi-ui-web-components",
+  //   "mitsubachi-uiのカスタム要素の一覧を提供します。",
+  //   {},
+  //   async () => {
+  //     return {
+  //       content,
+  //     };
+  //   }
+  // );
+  // for (const { tag, body } of [{ tag: "sp-logo", body: getSpLogoDefinition }]) {
+  //   const customElement = manifest.customElements[tag];
+  //   if (customElement) {
+  //     const [input, builder] = body(customElement);
+  //     server.tool(
+  //       `mitsubachi-${tag}`,
+  //       customElement.summary ?? `<${tag}>を生成します。`,
+  //       input,
+  //       async (shape: ZodRawShape) => {
+  //         const rendered = await collectResult(render(builder(shape)));
+  //         return {
+  //           content: [
+  //             {
+  //               type: "text",
+  //               text: rendered,
+  //             },
+  //           ],
+  //         };
+  //       }
+  //     );
+  //   }
+  // }
 }
 
 export async function main() {
