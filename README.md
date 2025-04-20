@@ -10,7 +10,7 @@ MCPサーバーを利用したいアプリケーションで以下のコマン�
 npx --yes "github:alpdr/mitsubachi-ui-mcp#semver:<version>"
 ```
 
-## 対応するmitsubachi-uiの版
+## 対応するmitsubachi-uiのバージョン
 mitsubachi-uiのバージョニングポリシーはセマンティックバージョニングです。
 mitsubachi-ui-mcpが対応するmitsubachi-uiのバージョンを示すために、
 両者のメジャーバージョンとマイナーバージョンを揃えています。
