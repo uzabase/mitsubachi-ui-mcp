@@ -15,3 +15,7 @@ mitsubachi-uiのバージョニングポリシーはセマンティックバー�
 mitsubachi-ui-mcpが対応するmitsubachi-uiのバージョンを示すために、
 両者のメジャーバージョンとマイナーバージョンを揃えています。
 たとえば、mitsubachi-uiの`0.11.0`と併用するときは`0.11.`から始まるバージョンのmitsubachi-ui-mcpを利用してください。
+
+
+## ほか
+[要認証ページ](https://www.notion.so/uzabase/mitsubachi-ui-mcp-1db58a3360358077af3dd08718ebdb66?pvs=4)
