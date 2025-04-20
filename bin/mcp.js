@@ -14,18 +14,8 @@ var CustomElementJson = class {
   get tagName() {
     return this.raw.tagName;
   }
-  get summary() {
-    return this.raw.summary;
-  }
   stringify() {
     return JSON.stringify(this.raw);
-  }
-  describe(attribute) {
-    for (let { name, description } of this.raw.attributes) {
-      if (name === attribute) {
-        return description;
-      }
-    }
   }
 };
 var ManifestJson = class {
@@ -33,16 +23,9 @@ var ManifestJson = class {
   constructor(raw) {
     this.raw = raw;
   }
-  get summaries() {
-    const elements = this.customElements;
-    let res = {};
-    for (const [_, v] of Object.entries(elements)) {
-      if (v.summary) {
-        res[v.tagName] = v.summary;
-      }
-    }
-    return res;
-  }
+  /**
+   * sp-ではじまる名前のWeb Componentを返します。
+   */
   get customElements() {
     const results = {};
     for (const module of this.modules) {
@@ -68,26 +51,63 @@ function loadDefaultManifest() {
   return loadManifest(custom);
 }
 
+// package.json
+var package_default = {
+  name: "mitsubachi-ui-mcp",
+  version: "0.12.0-alpha.1",
+  description: "Model Context Protocol server for mitsubachi-ui components integration and usage.",
+  type: "module",
+  main: "./bin/mcp.js",
+  bin: {
+    "mitsubachi-ui-mcp": "./bin/mcp.js"
+  },
+  scripts: {
+    build: "esbuild --bundle --format=esm --platform=node ./src/index.ts --packages=external --outfile=./bin/mcp.js",
+    test: "vitest"
+  },
+  repository: {
+    type: "git",
+    url: "git@github.com:uzabase/mitsubachi-ui-mcp.git"
+  },
+  keywords: [],
+  author: "",
+  license: "Apache-2.0 license",
+  dependencies: {
+    "@lit-labs/ssr": "^3.3.1",
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "lit-html": "^3.3.0",
+    "mitsubachi-ui": "github:uzabase/mitsubachi-ui#semver:0.12.0-alpha.0"
+  },
+  devDependencies: {
+    "@tsconfig/node22": "^22.0.1",
+    "@types/node": "^22.14.1",
+    esbuild: "0.25.2",
+    typescript: "^5.8.3",
+    vitest: "^3.1.1",
+    zod: "^3.24.2"
+  }
+};
+
 // src/index.ts
-function buildMcpServer() {
+function buildMcpServer(version) {
   return new McpServer({
-    name: "mitsubachi-mcp",
-    version: "1.0.0",
+    name: "mitsubachi-ui-mcp",
+    version,
     capabilities: {
       resources: {},
       tools: {}
     }
   });
 }
-function defineTools(server, manifest) {
+function defineTool(server, manifest) {
   const customElements = manifest.customElements;
   const texts = [];
   for (const [tag, elm] of Object.entries(customElements)) {
-    texts.push(`<${tag}>\u306Ecustom element manifest: ${elm.stringify()}`);
+    texts.push(`<${tag}>\u306ECustom Element Manifest: ${elm.stringify()}`);
   }
   server.tool(
     "mitsubachi-ui-web-components",
-    "mitsubachi-ui\u306Ecustom-elements.json\u3092\u63D0\u4F9B\u3057\u307E\u3059\u3002",
+    "Custom Elements Manifest\u3092\u63D0\u4F9B\u3057\u307E\u3059\u3002",
     {},
     async () => {
       return {
@@ -99,9 +119,9 @@ function defineTools(server, manifest) {
   );
 }
 async function main() {
-  const server = buildMcpServer();
+  const server = buildMcpServer(package_default.version);
   const manifest = loadDefaultManifest();
-  defineTools(server, manifest);
+  defineTool(server, manifest);
   const transport = new StdioServerTransport();
   await server.connect(transport);
   console.error("mitsubachi-ui MCP Server running on stdio");
