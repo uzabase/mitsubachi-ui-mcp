@@ -1,6 +1,6 @@
 {
   "name": "mitsubachi-ui-mcp",
-  "version": "0.12.0-alpha.0",
+  "version": "0.12.0-alpha.1",
   "description": "Model Context Protocol server for mitsubachi-ui components integration and usage.",
   "type": "module",
   "main": "./bin/mcp.js",
@@ -8,7 +8,8 @@
     "mitsubachi-ui-mcp": "./bin/mcp.js"
   },
   "scripts": {
-    "build": "esbuild --bundle --format=esm --platform=node ./src/index.ts --packages=external --outfile=./bin/mcp.js"
+    "build": "esbuild --bundle --format=esm --platform=node ./src/index.ts --packages=external --outfile=./bin/mcp.js",
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
