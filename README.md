@@ -14,4 +14,4 @@ npx --yes "github:alpdr/mitsubachi-ui-mcp#semver:<version>"
 mitsubachi-uiのバージョニングポリシーはセマンティックバージョニングです。
 mitsubachi-ui-mcpが対応するmitsubachi-uiのバージョンを示すために、
 両者のメジャーバージョンとマイナーバージョンを揃えています。
-たとえば、mitsubachi-uiの`0.11.0`と併用するときは`0.11.`からバージョンのmitsubachi-ui-mcpを利用してください。
+たとえば、mitsubachi-uiの`0.11.0`と併用するときは`0.11.`から始まるバージョンのmitsubachi-ui-mcpを利用してください。
