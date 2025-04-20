@@ -18,4 +18,4 @@ mitsubachi-ui-mcpが対応するmitsubachi-uiのバージョンを示すため�
 
 
 ## ほか
-[要認証ページ](https://www.notion.so/uzabase/mitsubachi-ui-mcp-1db58a3360358077af3dd08718ebdb66?pvs=4)
+[ノート（要認証）](https://www.notion.so/uzabase/mitsubachi-ui-mcp-1db58a3360358077af3dd08718ebdb66?pvs=4)
