@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { collectResult } from "@lit-labs/ssr/lib/render-result.js";
-import { ZodRawShape } from "zod";
 import { loadDefaultManifest, Manifest } from "./manifest.js";
+import packageInfo from '../package.json' with { type: "json" };
 
-function buildMcpServer(): McpServer {
+function buildMcpServer(version: string): McpServer {
+  
   return new McpServer({
-    name: "mitsubachi-mcp",
-    version: "1.0.0",
+    name: "mitsubachi-ui-mcp",
+    version: version,
     capabilities: {
       resources: {},
       tools: {},
@@ -16,16 +16,16 @@ function buildMcpServer(): McpServer {
   });
 }
 
-function defineTools(server: McpServer, manifest: Manifest) {
+function defineTool(server: McpServer, manifest: Manifest) {
   const customElements = manifest.customElements;
   const texts: string[] = [];
   for (const [tag, elm] of Object.entries(customElements)) {
-    texts.push(`<${tag}>のcustom element manifest: ${elm.stringify()}`);
+    texts.push(`<${tag}>のCustom Element Manifest: ${elm.stringify()}`);
   }
 
   server.tool(
     "mitsubachi-ui-web-components",
-    "mitsubachi-uiのcustom-elements.jsonを提供します。",
+    "Custom Elements Manifestを提供します。",
     {},
     async () => {
       return {
@@ -35,44 +35,12 @@ function defineTools(server: McpServer, manifest: Manifest) {
       };
     }
   );
-  // server.tool(
-  //   "mitsubachi-ui-web-components",
-  //   "mitsubachi-uiのカスタム要素の一覧を提供します。",
-  //   {},
-  //   async () => {
-  //     return {
-  //       content,
-  //     };
-  //   }
-  // );
-  // for (const { tag, body } of [{ tag: "sp-logo", body: getSpLogoDefinition }]) {
-  //   const customElement = manifest.customElements[tag];
-  //   if (customElement) {
-  //     const [input, builder] = body(customElement);
-  //     server.tool(
-  //       `mitsubachi-${tag}`,
-  //       customElement.summary ?? `<${tag}>を生成します。`,
-  //       input,
-  //       async (shape: ZodRawShape) => {
-  //         const rendered = await collectResult(render(builder(shape)));
-  //         return {
-  //           content: [
-  //             {
-  //               type: "text",
-  //               text: rendered,
-  //             },
-  //           ],
-  //         };
-  //       }
-  //     );
-  //   }
-  // }
 }
 
 export async function main() {
-  const server = buildMcpServer();
+  const server = buildMcpServer(packageInfo.version);
   const manifest = loadDefaultManifest();
-  defineTools(server, manifest);
+  defineTool(server, manifest);
 
   const transport = new StdioServerTransport();
   await server.connect(transport);

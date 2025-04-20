@@ -1,16 +1,15 @@
 import custom from 'mitsubachi-ui/custom-elements.json' with { type: 'json' };
 
 export interface Manifest {
-  get summaries(): { [key: string]: string };
   get customElements(): { [tag: string]: CustomElement };
 }
 
 export interface CustomElement {
   tagName: string;
-  summary: string | undefined;
-  describe(attribute: string): string | undefined;
-
-stringify(): string;
+  /**
+   * 
+   */
+  stringify(): string;
 }
 
 class CustomElementJson implements CustomElement {
@@ -24,21 +23,10 @@ class CustomElementJson implements CustomElement {
     return this.raw.tagName;
   }
 
-  get summary(): string | undefined {
-    return this.raw.summary;
-  }
-
   stringify(): string {
     return JSON.stringify(this.raw);
   }
 
-  describe(attribute: string): string | undefined {
-    for (let { name, description } of this.raw.attributes) {
-      if (name === attribute) {
-        return description;
-      }
-    }
-  }
 }
 
 class ManifestJson implements Manifest {
@@ -47,18 +35,9 @@ class ManifestJson implements Manifest {
   constructor(raw: any) {
     this.raw = raw;
   }
-
-  get summaries(): { [key: string]: string } {
-    const elements = this.customElements;
-    let res: { [key: string]: string } = {};
-    for (const [_, v] of Object.entries(elements)) {
-      if (v.summary) {
-        res[v.tagName] = v.summary;
-      }
-    }
-    return res;
-  }
-
+  /**
+   * sp-ではじまる名前のWeb Componentを返します。
+   */
   get customElements(): { [tag: string]: CustomElement } {
     const results: { [tag: string]: CustomElement } = {};
     for (const module of this.modules) {
@@ -78,7 +57,9 @@ class ManifestJson implements Manifest {
     return this.raw["modules"];
   }
 }
-
+/**
+ * 
+ */
 function loadManifest(manifestJson: any): Manifest {
   return new ManifestJson(manifestJson);
 }
