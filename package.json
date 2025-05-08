@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "esbuild --bundle --format=esm --platform=node ./src/index.ts --packages=external --outfile=./bin/mcp.js",
-    "test": "vitest"
+    "test": "vitest run"
   },
   "repository": {
     "type": "git",
