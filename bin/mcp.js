@@ -54,7 +54,7 @@ function loadDefaultManifest() {
 // package.json
 var package_default = {
   name: "mitsubachi-ui-mcp",
-  version: "0.12.0",
+  version: "0.13.1",
   description: "Model Context Protocol server for mitsubachi-ui components integration and usage.",
   type: "module",
   main: "./bin/mcp.js",
@@ -63,7 +63,7 @@ var package_default = {
   },
   scripts: {
     build: "esbuild --bundle --format=esm --platform=node ./src/index.ts --packages=external --outfile=./bin/mcp.js",
-    test: "vitest"
+    test: "vitest run"
   },
   repository: {
     type: "git",
@@ -76,12 +76,12 @@ var package_default = {
     "@lit-labs/ssr": "^3.3.1",
     "@modelcontextprotocol/sdk": "^1.9.0",
     "lit-html": "^3.3.0",
-    "mitsubachi-ui": "github:uzabase/mitsubachi-ui#semver:0.12.0"
+    "mitsubachi-ui": "github:uzabase/mitsubachi-ui#semver:0.13.1"
   },
   devDependencies: {
     "@tsconfig/node22": "^22.0.1",
     "@types/node": "^22.14.1",
-    esbuild: "0.25.2",
+    esbuild: "^0.25.2",
     typescript: "^5.8.3",
     vitest: "^3.1.1",
     zod: "^3.24.2"
