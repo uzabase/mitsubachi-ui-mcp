@@ -1,6 +1,6 @@
 {
   "name": "mitsubachi-ui-mcp",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "description": "Model Context Protocol server for mitsubachi-ui components integration and usage.",
   "type": "module",
   "main": "./bin/mcp.js",
@@ -20,13 +20,13 @@
   "license": "Apache-2.0 license",
   "dependencies": {
     "@lit-labs/ssr": "^3.3.1",
-    "@modelcontextprotocol/sdk": "^1.9.0",
+    "@modelcontextprotocol/sdk": "^1.11.3",
     "lit-html": "^3.3.0",
-    "mitsubachi-ui": "github:uzabase/mitsubachi-ui#semver:0.13.1"
+    "mitsubachi-ui": "github:uzabase/mitsubachi-ui#semver:0.14.0"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.18",
     "esbuild": "^0.25.2",
     "typescript": "^5.8.3",
     "vitest": "^3.1.1",
