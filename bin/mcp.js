@@ -31,7 +31,9 @@ var ManifestJson = class {
     for (const module of this.modules) {
       const declarations = module["declarations"];
       const customElements = declarations.filter(
-        (d) => d.customElement && d.tagName.startsWith("sp-")
+        (d) => {
+          return d.customElement && d.tagname && d.tagName.startsWith("sp-");
+        }
       );
       for (const customElement of customElements) {
         const c = new CustomElementJson(customElement);
@@ -54,7 +56,7 @@ function loadDefaultManifest() {
 // package.json
 var package_default = {
   name: "mitsubachi-ui-mcp",
-  version: "0.17.0",
+  version: "0.18.0",
   description: "Model Context Protocol server for mitsubachi-ui components integration and usage.",
   type: "module",
   main: "./bin/mcp.js",
@@ -74,17 +76,17 @@ var package_default = {
   license: "Apache-2.0 license",
   dependencies: {
     "@lit-labs/ssr": "^3.3.1",
-    "@modelcontextprotocol/sdk": "^1.11.3",
+    "@modelcontextprotocol/sdk": "^1.12.1",
     "lit-html": "^3.3.0",
-    "mitsubachi-ui": "github:uzabase/mitsubachi-ui#semver:0.17.0"
+    "mitsubachi-ui": "github:uzabase/mitsubachi-ui#semver:0.18.0"
   },
   devDependencies: {
-    "@tsconfig/node22": "^22.0.1",
-    "@types/node": "^22.15.18",
-    esbuild: "^0.25.2",
+    "@tsconfig/node22": "^22.0.2",
+    "@types/node": "^22.15.30",
+    esbuild: "^0.25.5",
     typescript: "^5.8.3",
-    vitest: "^3.1.1",
-    zod: "^3.24.2"
+    vitest: "^3.2.2",
+    zod: "^3.25.56"
   }
 };
 
