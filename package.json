@@ -1,6 +1,6 @@
 {
   "name": "mitsubachi-ui-mcp",
-  "version": "0.18.0",
+  "version": "0.18.2",
   "description": "Model Context Protocol server for mitsubachi-ui components integration and usage.",
   "type": "module",
   "main": "./bin/mcp.js",

@@ -32,7 +32,7 @@ var ManifestJson = class {
       const declarations = module["declarations"];
       const customElements = declarations.filter(
         (d) => {
-          return d.customElement && d.tagname && d.tagName.startsWith("sp-");
+          return d.customElement && d.tagName && d.tagName.startsWith("sp-");
         }
       );
       for (const customElement of customElements) {
@@ -56,7 +56,7 @@ function loadDefaultManifest() {
 // package.json
 var package_default = {
   name: "mitsubachi-ui-mcp",
-  version: "0.18.0",
+  version: "0.18.2",
   description: "Model Context Protocol server for mitsubachi-ui components integration and usage.",
   type: "module",
   main: "./bin/mcp.js",
