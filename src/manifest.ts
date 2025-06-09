@@ -44,7 +44,7 @@ class ManifestJson implements Manifest {
       const declarations = module["declarations"];
       const customElements = declarations.filter(
         (d: any) => {
-          return d.customElement && d.tagname && d.tagName.startsWith("sp-")
+          return d.customElement && d.tagName && d.tagName.startsWith("sp-")
         },
       );
       for (const customElement of customElements) {
