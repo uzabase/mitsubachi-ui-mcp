@@ -8,9 +8,8 @@ describe("Cosutom Element Manifest", async () => {
 
     const elements = sut.customElements;
 
-    expect(elements).toBeDefined();
+    expect(elements['sp-button']).toBeDefined();
   });
-
 
 });
 
